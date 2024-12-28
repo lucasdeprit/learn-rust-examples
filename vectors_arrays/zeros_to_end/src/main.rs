@@ -8,12 +8,12 @@ Output: [1, 3, 12, 0, 0]
 */
 
 fn main() {
-    let mut vec: Vec<i32> = [0, 1, 0, 3, 12].to_vec();
+    let vec: Vec<i32> = [0, 1, 0, 3, 12].to_vec();
     print_response(zeros_to_end(&vec));
-    print_response(zeros_to_end_better(&mut vec));
+    print_response(zeros_to_end_better(vec));
 }
 
-fn zeros_to_end_better(vec: &mut Vec<i32>) -> Vec<i32> {
+fn zeros_to_end_better(vec: Vec<i32>) -> Vec<i32> {
     let mut non_zero: Vec<i32> = vec.iter().cloned().filter(|&x| x != 0).collect();
     non_zero.extend(
         vec.iter()
