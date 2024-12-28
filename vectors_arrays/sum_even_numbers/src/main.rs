@@ -15,13 +15,21 @@ fn main() {
     println!("expected: 6, returned: {}", get_sum_even_numbers(vec));
 
     let vec: Vec<i32> = [8, 2, 3, 4, 5].to_vec();
-    println!("expected: 14, returned: {}", get_sum_even_numbers(vec))
+    println!(
+        "expected: 14, returned: {}",
+        get_sum_even_numbers_better(vec)
+    )
 }
 
+// unoptimized response
 fn get_sum_even_numbers(vec: Vec<i32>) -> i32 {
     vec.into_iter()
         .filter(|x| *x % 2 == 0)
         .collect::<Vec<i32>>()
         .into_iter()
         .sum()
+}
+
+fn get_sum_even_numbers_better(vec: Vec<i32>) -> i32 {
+    vec.into_iter().filter(|&x| x % 2 == 0).sum()
 }
