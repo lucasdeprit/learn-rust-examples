@@ -45,6 +45,12 @@ impl Inventory {
         }
     }
 
+    fn update_price(&mut self, name: &str, new_price: u64) {
+        if let Some(product) = self.products.iter_mut().find(|x| x.name == name) {
+            product.price = new_price;
+        }
+    }
+
     fn total_value(&self) -> u64 {
         let mut response: u64 = 0;
         for product in self.products.iter() {
@@ -57,9 +63,10 @@ impl Inventory {
 fn main() {
     println!("Hello, world!");
     let mut inventory = Inventory::new();
-    inventory.add_product("Apple", 100, 10);
-    inventory.add_product("Banana", 50, 20);
-    println!("{}", inventory.total_value()); // 20.0
+    inventory.add_product("Apple", 100, 1000);
+    inventory.add_product("Banana", 50, 2000);
+    println!("{}", inventory.total_value()); // 20000
     inventory.update_stock("Apple", 15);
-    println!("{}", inventory.total_value()); // 22.5
+    inventory.update_price("Apple", 1500);
+    println!("{}", inventory.total_value()); // 122500
 }
