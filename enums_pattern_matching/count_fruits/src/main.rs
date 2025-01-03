@@ -1,4 +1,5 @@
 /*
+*
 4. [Medium-Hard] Count Fruits
 Create an enum Fruit with the following variants:
 
