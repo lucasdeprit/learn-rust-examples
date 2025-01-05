@@ -14,6 +14,16 @@ Output:
 
 use std::collections::HashMap;
 
+// optimized
+fn word_frequency(text: &str) -> HashMap<&str, usize> {
+    let mut map = HashMap::new();
+    for word in text.split_whitespace() {
+        // if it doesnt contain the key inserts a default value
+        *map.entry(word).or_insert(0) += 1;
+    }
+    map
+}
+
 fn get_word_frecuency(text: &str) -> HashMap<&str, u32> {
     let mut map = HashMap::new();
 
@@ -31,5 +41,10 @@ fn main() {
     println!(
         "{:?}",
         get_word_frecuency("hello world hello hello hello hello")
+    );
+
+    println!(
+        "{:?}",
+        word_frequency("hello world hello hello hello hello")
     );
 }
