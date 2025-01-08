@@ -19,10 +19,11 @@ impl TaskManager {
     pub fn list_tasks(&self) {
         for task in &self.tasks {
             println!(
-                "[{}] {} - {}",
+                "[{}] {} - {} - Created At: {}",
                 task.id,
                 if task.completed { "X" } else { " " },
-                task.description
+                task.description,
+                task.created_at.format("%Y-%m-%d %H:%M"),
             );
         }
     }
