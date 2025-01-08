@@ -10,6 +10,11 @@ impl TaskManager {
         Self { tasks: Vec::new() }
     }
 
+    #[cfg(test)]
+    pub fn get_tasks(&self) -> &Vec<Task> {
+        &self.tasks
+    }
+
     pub fn add_task(&mut self, description: String) {
         let id = (self.tasks.len() + 1) as u32;
         let task = Task::new(id, description);
