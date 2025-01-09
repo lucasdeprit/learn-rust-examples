@@ -1,6 +1,7 @@
 // src/task/manager.rs
 use super::models::Task;
 
+#[derive(Debug)]
 pub struct TaskManager {
     tasks: Vec<Task>,
 }

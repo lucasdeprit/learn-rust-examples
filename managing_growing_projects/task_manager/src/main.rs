@@ -1,18 +1,34 @@
 mod task;
-use task::manager::TaskManager;
+
+mod project;
+use project::manager::ProjectManager;
 
 fn main() {
-    let mut manager = TaskManager::new();
+    let mut project_manager = ProjectManager::new();
 
-    manager.add_task("Aprender Rust".to_string());
-    manager.add_task("Completar el proyecto de gestor de tareas".to_string());
+    project_manager.add_project("Learn Rust".to_string());
 
-    println!("Lista de tareas:");
-    manager.list_tasks();
+    match project_manager.get_project(1) {
+        Some(project) => {
+            println!("Project Description: {}", project.description);
+            println!(
+                "Created At: {}",
+                project.created_at.format("%Y-%m-%d %H:%M")
+            );
+            project.tasks.add_task("Learn Rust".to_string());
+            project.tasks.add_task("Finish Project Manager".to_string());
 
-    manager.complete_task(1);
-    println!("\nTareas después de completar la tarea 1:");
-    manager.list_tasks();
+            println!("Project Tasks: ");
+            project.tasks.list_tasks();
+
+            project.tasks.complete_task(1);
+            println!("\nTasks after completing first: ");
+            project.tasks.list_tasks();
+        }
+        None => {
+            print!("Project not Found!")
+        }
+    }
 }
 
 #[cfg(test)]
